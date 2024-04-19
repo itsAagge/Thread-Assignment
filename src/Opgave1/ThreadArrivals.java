@@ -1,27 +1,25 @@
 package Opgave1;
 
 public class ThreadArrivals extends Thread {
-    int Id;
+    int id;
     int concurrentId;
     int nrOfArrivalsPerThread;
-    Common common;
-    PetersonsAlgorithm peterson;
+    private Common common;
 
-    public ThreadArrivals(int Id, int maxNrOfArrivalsPerThread, Common common) {
-        this.Id = Id;
+    public ThreadArrivals(int Id, int nrOfArrivalsPerThread, Common common) {
+        this.id = Id;
         this.concurrentId = (Id + 1) % 2;
-        this.nrOfArrivalsPerThread = maxNrOfArrivalsPerThread;
+        this.nrOfArrivalsPerThread = nrOfArrivalsPerThread;
         this.common = common;
-        this.peterson = common.getPeterson();
     }
 
     public void run() {
         for (int i = 0; i < nrOfArrivalsPerThread; i++) {
-            this.peterson.setFlag(true, this.Id);
-            this.peterson.setTurn(concurrentId);
-            while(this.peterson.getFlag(concurrentId) && this.peterson.getTurn() == concurrentId);
-            // DO SOMETHING
-            this.peterson.setFlag(true, this.Id);
+            this.common.setFlag(true, this.id);
+            this.common.setTurn(concurrentId);
+            while(this.common.getFlag(concurrentId) && this.common.getTurn() == concurrentId);
+            common.customerArrived(this.id);
+            this.common.setFlag(true, this.id);
         }
     }
 }

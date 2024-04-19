@@ -5,14 +5,14 @@ import Opgave4.Queue;
 import java.util.Random;
 
 public class Common {
-    private int lastArrivedNumber;
-    private int lastServedNumber;
-    private PetersonsAlgorithm peterson;
+    private volatile int lastArrivedNumber = 0;
+    private volatile int lastServedNumber = 0;
+    private boolean[] flag = new boolean[2];
+    private int turn = 0;
 
     public Common() {
-        this.lastArrivedNumber = 0;
-        this.lastServedNumber = 0;
-        this.peterson = new PetersonsAlgorithm();
+        flag[0] = false;
+        flag[1] = false;
     }
 
     public int getLastArrivedNumber() {
@@ -21,10 +21,6 @@ public class Common {
 
     public int getLastServedNumber() {
         return lastServedNumber;
-    }
-
-    public PetersonsAlgorithm getPeterson() {
-        return peterson;
     }
 
     public void TagerRanTid (int max) {
@@ -37,5 +33,29 @@ public class Common {
                 y = i - j;
             }
         }
+    }
+
+    public void customerArrived(int id) {
+        System.out.println("Customer arrived. Nr: " + ++this.lastArrivedNumber + " - using door " + (id + 1));
+    }
+
+    public void customerServed() {
+        System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
+    }
+
+    public boolean getFlag(int id) {
+        return flag[id];
+    }
+
+    public void setFlag(boolean bool, int id) {
+        this.flag[id] = bool;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 }
