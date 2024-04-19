@@ -1,16 +1,12 @@
-package Opgave1;
+package Opgave3;
 
 import java.util.Random;
 
 public class Common {
     private int lastArrivedNumber = 0;
     private int lastServedNumber = 0;
-    private boolean[] flag = new boolean[2];
-    private volatile int turn = 0;
 
     public Common() {
-        flag[0] = false;
-        flag[1] = false;
     }
 
     public int getLastArrivedNumber() {
@@ -33,29 +29,15 @@ public class Common {
         }
     }
 
-    public void customerArrived() {
+    public synchronized void customerArrived() {
         TagerRanTid(100);
         System.out.println("Customer arrived. Nr: " + ++this.lastArrivedNumber);
+        notify();
     }
 
-    public void customerServed() {
+    public synchronized void customerServed() throws InterruptedException {
+        if (lastServedNumber == lastArrivedNumber) wait();
         TagerRanTid(200);
         System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
-    }
-
-    public boolean getFlag(int id) {
-        return flag[id];
-    }
-
-    public void setFlag(boolean bool, int id) {
-        this.flag[id] = bool;
-    }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    public void setTurn(int turn) {
-        this.turn = turn;
     }
 }

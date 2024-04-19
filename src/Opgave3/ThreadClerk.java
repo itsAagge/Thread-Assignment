@@ -1,4 +1,6 @@
-package Opgave1;
+package Opgave3;
+
+import Opgave3.Common;
 
 public class ThreadClerk extends Thread {
     private int id;
@@ -13,8 +15,11 @@ public class ThreadClerk extends Thread {
 
     public void run() {
         for (int i = 0; i < nrOfCustomers; i++) {
-            while(common.getLastServedNumber() == common.getLastArrivedNumber());
-            common.customerServed();
+            try {
+                common.customerServed();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

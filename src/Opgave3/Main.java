@@ -1,4 +1,8 @@
-package Opgave1;
+package Opgave3;
+
+import Opgave3.Common;
+import Opgave3.ThreadArrivals;
+import Opgave3.ThreadClerk;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,5 +14,4 @@ public class Main {
         door2.start();
         clerk.start();
     }
-
 }
