@@ -2,6 +2,8 @@ package Opgave3;
 
 import Opgave3.Common;
 
+import java.util.concurrent.Semaphore;
+
 public class ThreadArrivals extends Thread {
     private int id;
     private int nrOfArrivalsPerThread;
@@ -16,6 +18,7 @@ public class ThreadArrivals extends Thread {
     public void run() {
         for (int i = 0; i < nrOfArrivalsPerThread; i++) {
             common.customerArrived(this.id);
+            common.TagerRanTid(1000000);
         }
     }
 }

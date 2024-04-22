@@ -30,14 +30,14 @@ public class Common {
     }
 
     public synchronized void customerArrived(int id) {
-        TagerRanTid(100);
         System.out.println("Customer arrived from door " + (id + 1) + ". Nr: " + ++this.lastArrivedNumber);
         notify();
     }
 
     public synchronized void customerServed() throws InterruptedException {
-        if (lastServedNumber == lastArrivedNumber) wait();
-        TagerRanTid(200);
-        System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
+        //if (lastServedNumber == lastArrivedNumber) wait();
+        if (lastServedNumber < lastArrivedNumber) {
+            System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
+        }
     }
 }

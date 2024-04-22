@@ -20,6 +20,7 @@ public class ThreadArrivals extends Thread {
             while(this.common.getFlag(concurrentId) && this.common.getTurn() == concurrentId);
             common.customerArrived();
             this.common.setFlag(false, this.id);
+            common.TagerRanTid(1000000);
         }
     }
 }
