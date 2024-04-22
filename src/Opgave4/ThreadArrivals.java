@@ -20,6 +20,7 @@ public class ThreadArrivals extends Thread {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            common.TagerRanTid(1000000);
         }
     }
 }

@@ -15,6 +15,16 @@ public class Main {
         door2.start();
         clerk1.start();
         clerk2.start();
-        //Evt. kunne man lave en CommonArrivals underklasse, så de to synchronized metoder ikke er i samme monitor
+        try {
+            door1.join();
+            door2.join();
+            clerk1.join();
+            clerk2.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println();
+        System.out.println("Total number of customers entered: " + common.getCustomersEntered());
+        System.out.println("Total number of customers served: " + common.getCustomersServed());
     }
 }
