@@ -17,7 +17,8 @@ public class ThreadArrivals extends Thread {
 
     public void run() {
         for (int i = 0; i < nrOfArrivalsPerThread; i++) {
-            common.customerArrived();
+            common.customerArrived(this.id);
+            common.TagerRanTid(1000000);
         }
     }
 }

@@ -15,6 +15,7 @@ public class ThreadClerk extends Thread {
         for (int i = 0; i < nrOfCustomers; i++) {
             while(common.getLastServedNumber() == common.getLastArrivedNumber());
             common.customerServed();
+            common.TagerRanTid(1000000);
         }
     }
 }

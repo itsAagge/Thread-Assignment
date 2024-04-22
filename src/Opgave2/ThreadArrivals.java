@@ -26,6 +26,7 @@ public class ThreadArrivals extends Thread {
             }
             common.customerArrived();
             semaphore.release();
+            common.TagerRanTid(1000000);
         }
     }
 }

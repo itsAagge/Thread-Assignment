@@ -26,6 +26,7 @@ public class ThreadClerk extends Thread {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            common.TagerRanTid(1000000);
         }
     }
 }

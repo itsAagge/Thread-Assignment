@@ -34,12 +34,10 @@ public class Common {
     }
 
     public void customerArrived() {
-        TagerRanTid(100);
         System.out.println("Customer arrived. Nr: " + ++this.lastArrivedNumber);
     }
 
     public void customerServed() {
-        TagerRanTid(200);
         System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
     }
 
