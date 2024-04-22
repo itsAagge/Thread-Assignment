@@ -35,9 +35,7 @@ public class Common {
     }
 
     public synchronized void customerServed() throws InterruptedException {
-        //if (lastServedNumber == lastArrivedNumber) wait();
-        if (lastServedNumber < lastArrivedNumber) {
-            System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
-        }
+        if (lastServedNumber == lastArrivedNumber) wait();
+        System.out.println("Served cusomer nr. " + ++this.lastServedNumber);
     }
 }
