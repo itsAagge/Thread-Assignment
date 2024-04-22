@@ -1,6 +1,6 @@
-package Opgave3;
+package Opgave4;
 
-import Opgave3.Common;
+import Opgave4.Common;
 
 public class ThreadArrivals extends Thread {
     private int id;
@@ -15,7 +15,11 @@ public class ThreadArrivals extends Thread {
 
     public void run() {
         for (int i = 0; i < nrOfArrivalsPerThread; i++) {
-            common.customerArrived(this.id);
+            try {
+                common.customerArrived(this.id);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

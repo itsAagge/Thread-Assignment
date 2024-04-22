@@ -14,7 +14,7 @@ public class Queue<E> {
 
     public void add(E element) {
         if (size == elements.length) {
-            increaseCapacity();
+            throw new IllegalArgumentException("Queue is full");
         }
         size++;
         elements[back] = element;
@@ -53,15 +53,4 @@ public class Queue<E> {
             throw new NoSuchElementException("Queue is empty");
         }
     }
-
-    private void increaseCapacity() {
-        E[] newElementsArray = (E[])new Object[elements.length * 2];
-        for (int index = 0; index < elements.length; index++) {
-            newElementsArray[index] = elements[(front + index) % elements.length];
-        }
-        elements = newElementsArray;
-        front = 0;
-        back = size;
-    }
-
 }

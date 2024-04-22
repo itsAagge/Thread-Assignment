@@ -29,9 +29,9 @@ public class Common {
         }
     }
 
-    public synchronized void customerArrived() {
+    public synchronized void customerArrived(int id) {
         TagerRanTid(100);
-        System.out.println("Customer arrived. Nr: " + ++this.lastArrivedNumber);
+        System.out.println("Customer arrived from door " + (id + 1) + ". Nr: " + ++this.lastArrivedNumber);
         notify();
     }
 
