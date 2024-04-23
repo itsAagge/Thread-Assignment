@@ -11,8 +11,8 @@ public class Main {
         Common common = new Common();
         Semaphore semaphore = new Semaphore(1);
         Semaphore waitingSemaphore = new Semaphore(0);
-        ThreadArrivals door1 = new ThreadArrivals(0, 10, common, semaphore);
-        ThreadArrivals door2 = new ThreadArrivals(1, 10, common, semaphore);
+        ThreadArrivals door1 = new ThreadArrivals(0, 10, common, semaphore, waitingSemaphore);
+        ThreadArrivals door2 = new ThreadArrivals(1, 10, common, semaphore, waitingSemaphore);
         ThreadClerk clerk = new ThreadClerk(1, 20, common, waitingSemaphore);
         door1.start();
         door2.start();

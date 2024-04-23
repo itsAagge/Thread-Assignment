@@ -19,13 +19,12 @@ public class ThreadClerk extends Thread {
 
     public void run() {
         for (int i = 0; i < nrOfCustomers; i++) {
-            semaphore.release();
-            common.customerServed();
             try {
                 semaphore.acquire();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            common.customerServed();
             common.TagerRanTid(1000000);
         }
     }

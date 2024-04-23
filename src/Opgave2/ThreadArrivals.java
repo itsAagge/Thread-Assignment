@@ -9,12 +9,14 @@ public class ThreadArrivals extends Thread {
     private int nrOfArrivalsPerThread;
     private Common common;
     private Semaphore semaphore;
+    private Semaphore waiting;
 
-    public ThreadArrivals(int Id, int nrOfArrivalsPerThread, Common common, Semaphore semaphore) {
+    public ThreadArrivals(int Id, int nrOfArrivalsPerThread, Common common, Semaphore semaphore, Semaphore waiting) {
         this.id = Id;
         this.nrOfArrivalsPerThread = nrOfArrivalsPerThread;
         this.common = common;
         this.semaphore = semaphore;
+        this.waiting = waiting;
     }
 
     public void run() {
@@ -26,6 +28,7 @@ public class ThreadArrivals extends Thread {
             }
             common.customerArrived();
             semaphore.release();
+            waiting.release();
             common.TagerRanTid(1000000);
         }
     }
